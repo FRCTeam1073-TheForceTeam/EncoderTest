@@ -33,12 +33,29 @@ public class  PrintEncoderValues extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.encoderSystem.setRate();
+    	Robot.encoderSystem.setEncoderDistance();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	SmartDashboard.putNumber("The Rate of the Encoder is: ", Robot.encoderSystem.getValues());
+    	
+    	
+    	
+    	/*
+    	SmartDashboard.putNumber("The Rate of the Front Left Encoder is: ", Robot.encoderSystem.getFrontLeftEncoder().getRate()/1000);
+    	SmartDashboard.putNumber("The Current Count of the Front Left Encoder is: ", Robot.encoderSystem.getFrontLeftEncoder().get());
+    	*/
+    	SmartDashboard.putNumber("The Rate of the Front Right Encoder is: ", Robot.encoderSystem.getFrontRightEncoder().getRate()/1000);
+    	SmartDashboard.putNumber("The Current Count of the Front Right Encoder is: ", Robot.encoderSystem.getFrontRightEncoder().get());
+    	
+    	SmartDashboard.putNumber("Distance Traveled: ", Robot.encoderSystem.getFrontRightEncoder().getDistance());
+    	/*
+    	SmartDashboard.putNumber("The Rate of the Back Left Encoder is: ", Robot.encoderSystem.getBackLeftEncoder().getRate()/1000);
+    	SmartDashboard.putNumber("The Current Count of the Back Left Encoder is: ", Robot.encoderSystem.getBackLeftEncoder().get());
+    	
+    	SmartDashboard.putNumber("The Rate of the Back Right Encoder is: ", Robot.encoderSystem.getBackRightEncoder().getRate()/1000);
+    	SmartDashboard.putNumber("The Current Count of the Back Right Encoder is: ", Robot.encoderSystem.getBackRightEncoder().get());
+    	*/
     }
 
     // Make this return true when this Command no longer needs to run execute()

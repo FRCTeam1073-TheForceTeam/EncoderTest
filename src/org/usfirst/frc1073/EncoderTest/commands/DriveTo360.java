@@ -11,7 +11,6 @@
 
 package org.usfirst.frc1073.EncoderTest.commands;
 
-import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -20,9 +19,9 @@ import org.usfirst.frc1073.EncoderTest.Robot;
 /**
  *
  */
-public class  Drive extends Command {
+public class  DriveTo360 extends Command {
 
-    public Drive() {
+    public DriveTo360() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
 
@@ -34,23 +33,19 @@ public class  Drive extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.driveTrain.setSpeed(.150f);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	float x = (float) Robot.oi.driver.getX();
-    	float y = (float) Robot.oi.driver.getY();
-    	float twist = (float) Robot.oi.rotator.getX();
-    	if(Math.abs(x) <= 0.05){
-    		x = 0;
+    	int count = Robot.encoderSystem.getFrontRightEncoder().get();
+    	if(count < 354){
+    		Robot.driveTrain.moveFrontRight();
     	}
-    	if(Math.abs(y) <= 0.05){
-    		y = 0;
+    	else{
+    		Robot.driveTrain.stop();
     	}
-    	if(Math.abs(twist) <= 0.05){
-    		twist = 0;
-    	}
-    	Robot.driveTrain.move(x, y, twist);
+    	SmartDashboard.putNumber("Front Right Count From Command:", count);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -60,12 +55,10 @@ public class  Drive extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.driveTrain.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
     }
 }
