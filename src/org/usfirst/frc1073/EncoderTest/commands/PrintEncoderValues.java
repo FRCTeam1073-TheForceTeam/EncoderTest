@@ -56,15 +56,23 @@ public class  PrintEncoderValues extends Command {
     	
     	double frontLeftPercent = Math.abs(((frontLeftFeet - averageFeet)/averageFeet)*100);
     	// ((frontLeftFeet * 100)/averageFeet)/100;
-    	double frontRightPercent = (frontRightFeet * 100)/averageFeet;
-    	double backLeftPercent = (backLeftFeet * 100)/averageFeet;
-    	double backRightPercent = (backRightFeet * 100)/averageFeet;
+    	double frontRightPercent = Math.abs(((frontRightFeet - averageFeet)/averageFeet)*100);
+    	double backLeftPercent = Math.abs(((backLeftFeet - averageFeet)/averageFeet)*100);
+    	double backRightPercent = Math.abs(((backRightFeet - averageFeet)/averageFeet)*100);
     	
-    	SmartDashboard.putNumber("Distance front Left in Inch: ", frontLeftDistance);
-    	SmartDashboard.putNumber("Distance front Left in Feet: ", frontLeftFeet);
-    	SmartDashboard.putNumber("Average Distance Inch: ", averageDistance);
     	SmartDashboard.putNumber("Average Distance Feet: ", averageFeet);
+    	
+    	SmartDashboard.putNumber("Distance front Left in Feet: ", frontLeftFeet);
     	SmartDashboard.putNumber("Front Left Percent Difference: ", frontLeftPercent);
+    	
+    	SmartDashboard.putNumber("Distance front right in Feet: ", frontRightFeet);
+    	SmartDashboard.putNumber("Front Right Percent Difference: ", frontRightPercent);
+    	
+    	SmartDashboard.putNumber("Distance back Left in Feet: ", backLeftFeet);
+    	SmartDashboard.putNumber("Back Left Percent Difference: ", backLeftPercent);
+    	
+    	SmartDashboard.putNumber("Distance back Right in Feet: ", backRightFeet);
+    	SmartDashboard.putNumber("Back Right Percent Differnce: ", backRightPercent);
     	
     	/*
     	SmartDashboard.putNumber("The Rate of the Front Left Encoder is: ", Robot.encoderSystem.getFrontLeftEncoder().getRate()/1000);
